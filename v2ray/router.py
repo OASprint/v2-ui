@@ -2,6 +2,7 @@ import json
 
 from flask import Blueprint, render_template, jsonify, request
 from flask_babel import gettext
+from sqlalchemy import and_
 
 from base.models import Msg
 from init import db
@@ -49,6 +50,12 @@ def tutorial():
     return render_template('v2ray/tutorial.html', **common_context)
 
 
+@v2ray_bp.route('/donate/', methods=['GET'])
+def donate():
+    from init import common_context
+    return render_template('v2ray/donate.html', **common_context)
+
+
 @v2ray_bp.route('/inbounds', methods=['GET'])
 def inbounds():
     return jsonify([inb.to_json() for inb in Inbound.query.all()])
@@ -83,6 +90,8 @@ def update_inbound(in_id):
     port = request.form.get('port')
     add_if_not_none(update, 'port', port)
     if port:
+        if Inbound.query.filter(and_(Inbound.id != in_id, Inbound.port == port)).count() > 0:
+            return jsonify(Msg(False, gettext('port exists')))
         add_if_not_none(update, 'tag', 'inbound-' + port)
     add_if_not_none(update, 'listen', request.form.get('listen'))
     add_if_not_none(update, 'protocol', request.form.get('protocol'))

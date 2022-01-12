@@ -513,9 +513,15 @@ class Sniffing extends V2CommonClass {
     }
 
     static fromJson(json={}) {
+        let destOverride = clone(json.destOverride);
+        if (!isEmpty(destOverride) && !isArrEmpty(destOverride)) {
+            if (isEmpty(destOverride[0])) {
+                destOverride = ['http', 'tls'];
+            }
+        }
         return new Sniffing(
             !!json.enabled,
-            clone(json.destOverride),
+            destOverride,
         );
     }
 }
@@ -593,6 +599,13 @@ class Inbound extends V2CommonClass {
             host = this.stream.quic.security;
             path = this.stream.quic.key;
         }
+
+        if (this.stream.security === 'tls') {
+            if (!isEmpty(this.stream.tls.server)) {
+                address = this.stream.tls.server;
+            }
+        }
+
         let obj = {
             v: '2',
             ps: this.remark,
