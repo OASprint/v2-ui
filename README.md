@@ -1,12 +1,5 @@
 中文 | [English](README.en.md)
 
-# 捐赠支持
-如果你觉得面板好用的话，可以考虑一下捐赠支持，金额随意，感谢支持。
- - [Paypal](https://blog.sprov.xyz/go/support-paypal)
- - USDT：0xa77579db35ad766844d41aca541d658349268012
- - 以太坊 (ETH)：0xa77579db35ad766844d41aca541d658349268012
- - 比特币 (BTC)：bc1qemdf5vdz8cq07cdcqzhvzewy35994cxt7gnrpegaz8txwxfp2ysqtfw6hh
-
 # v2-ui
 支持多协议多用户的 v2ray 面板，Support multi-protocol multi-user v2ray panel
 
@@ -14,9 +7,6 @@
 面板目前支持中文与英文，如果你发现了错误的翻译想帮助修正，或者想帮助翻译成更多的语言，可以在 translations 文件夹中找到各语言对应的翻译，例如 [translations/zh/LC_MESSAGES/message.po](translations/zh/LC_MESSAGES/messages.po) 文件是中文翻译内容。其中 msgid 是英文原文，msgstr 是翻译后的内容，每个 msgid 对应一个 msgstr。
 
 当然，文档目前也只支持中文和英文，如果你想帮助翻译，那么创建一个文件 README.lang.md，lang 是该语言的英文缩写，例如 en 代表英文。
-
-# 详细教程
-https://blog.sprov.xyz/v2-ui/
 
 # 运行截图
 ![1.png](1.png)
@@ -31,7 +21,7 @@ https://blog.sprov.xyz/v2-ui/
  - 支持自定义 v2ray 配置模板
  - 支持 https 访问面板（需自备域名 + ssl 证书）
  - 更多高级配置项，详见面板
- 
+
 # 安装&升级
 
 ## 用户注意事项（必看）
@@ -44,7 +34,7 @@ v2-ui 与其它所有关于修改 v2ray 配置文件的工具***完全不兼容*
 
 ## 一键安装&升级
 ```
-bash <(curl -Ls https://blog.sprov.xyz/v2-ui.sh)
+不再支持一键安装
 ```
 
 ## 手动安装&升级
@@ -55,12 +45,12 @@ https://github.com/v2ray/v2ray-core/releases
 
 使用以下命令进行本地安装 v2ray，如果你将 v2ray-linux-64.zip 文件上传至了其它目录，那么需要将命令中的 /root/v2ray-linux-64.zip 替换为你实际的文件路径。
 ```
-bash <(curl -L -s https://install.direct/go.sh) --local /root/v2ray-linux-64.zip
+(此脚本已不能使用，请参考v2fly/fhs-install-v2ray安装)
 ```
 如果安装顺利的话，进入下一步，若安装不顺利的话，可以向 v2ray 官方寻求帮助，因为这是 v2ray 官方的脚本，不是我的。
 
 ### 手动安装 v2-ui
-https://github.com/sprov065/v2-ui/releases
+https://github.com/OASprint/v2-ui/releases
 
 从该地址中下载最新的 v2-ui-linux.tar.gz 文件，并上传至 VPS 的 /root/ 目录下。若你上传至其它的目录，则将第一行命令的 cd /root/ 改为 cd (实际的目录)，不用包括文件名。
 ```
@@ -76,7 +66,7 @@ systemctl daemon-reload
 systemctl enable v2-ui
 systemctl restart v2-ui
  
-curl -o /usr/bin/v2-ui -Ls https://raw.githubusercontent.com/sprov065/v2-ui/master/v2-ui.sh
+curl -o /usr/bin/v2-ui -Ls https://raw.githubusercontent.com/OASprint/v2-ui/main/v2-ui.sh
 chmod +x /usr/bin/v2-ui
 ```
 安装完毕后，输入 v2-ui 命令，你会看到你想要的。
@@ -165,8 +155,3 @@ systemctl daemon-reload
 
 ## 单端口多用户
 设计之初并没有考虑到这个配置方式，目前再修改已经不太方便，所以之后大概率不会支持这个配置方式。
-
-# Telegram
-群组：https://t.me/sprov_blog
-
-频道：https://t.me/sprov_channel
